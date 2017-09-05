@@ -1,5 +1,5 @@
 ﻿@model LoginViewModel
-   
+
 @{
     ViewBag.Title = "Log In";
 }
@@ -19,8 +19,9 @@
     <button class="btn btn-primary" type="submit">Log In</button>
 
     <br />
-
-    <a asp-action="AddAdminAccount" asp-controller="Account" class="btn btn-primary">Add Admin User Account</a>
+</form>
+<form asp-action="AddAdminAccount" asp-controller="Account">
+    <button class="btn btn-primary" type="submit">Add Admin User Account</button>
 </form>
 
 
