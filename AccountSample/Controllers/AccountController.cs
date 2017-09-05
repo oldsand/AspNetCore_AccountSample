@@ -25,7 +25,6 @@ namespace AccountSample.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel loginModel)
         {
             if (ModelState.IsValid)
@@ -44,7 +43,23 @@ namespace AccountSample.Controllers
             }
 
             ModelState.AddModelError("", "Invalid name or password");
-            return View(loginModel);
+            return View(nameof(AdminController.Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddAdminAccount()
+        {
+            string adminUser = "Admin";
+            string adminPassword = "P@ssw0rd";
+
+            IdentityUser user = await userManager.FindByIdAsync(adminUser);
+            if (user == null)
+            {
+                user = new IdentityUser("Admin");
+                await userManager.CreateAsync(user, adminPassword);
+            }
+
+            return View(nameof(Login));
         }
 
     }
