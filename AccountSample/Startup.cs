@@ -42,19 +42,12 @@ namespace AccountSample
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseAuthentication();
-            app.UseMvcWithDefaultRoute();
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: null,
-            //        template: "",
-            //        defaults: new { controller = "Account", acton = "Index" });
-
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller=Account}/{action=Index}/{id?}");
-
-            //});
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Account}/{action=Index}/{id?}");
+            });
         }
     }
 }

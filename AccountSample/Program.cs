@@ -26,7 +26,7 @@ namespace AccountSample
                 try
                 {
                     var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
-                    DbInitializer.Initialize(userManager).RunSynchronously();
+                    DbInitializer.Initialize(userManager);
                 }
                 catch (Exception ex)
                 {

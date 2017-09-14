@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AccountSample.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -52,14 +49,14 @@ namespace AccountSample.Controllers
             string adminUser = "Admin";
             string adminPassword = "P@ssw0rd";
 
-            IdentityUser user = await userManager.FindByIdAsync(adminUser);
+            IdentityUser user = await userManager.FindByNameAsync(adminUser);
             if (user == null)
             {
                 user = new IdentityUser("Admin");
                 await userManager.CreateAsync(user, adminPassword);
             }
 
-            return View(nameof(Login));
+            return RedirectToAction(nameof(AdminController.Index), nameof(AdminController).Replace("Controller", ""));
         }
 
     }
