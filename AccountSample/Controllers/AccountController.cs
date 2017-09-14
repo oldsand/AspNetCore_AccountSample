@@ -34,7 +34,7 @@ namespace AccountSample.Controllers
 
                     if ((await signInManager.PasswordSignInAsync(user, loginModel.Password, false, false)).Succeeded)
                     {
-                        return Redirect("/Admin/Index");
+                        return RedirectToAction(nameof(AdminController.Index), nameof(AdminController).Replace("Controller", ""));
                     }
                 }
             }
@@ -54,9 +54,10 @@ namespace AccountSample.Controllers
             {
                 user = new IdentityUser("Admin");
                 await userManager.CreateAsync(user, adminPassword);
+                return RedirectToAction(nameof(AdminController.AddAdmin), nameof(AdminController).Replace("Controller", ""));
             }
-
-            return RedirectToAction(nameof(AdminController.Index), nameof(AdminController).Replace("Controller", ""));
+            else
+                return RedirectToAction(nameof(AdminController.AccountExist), nameof(AdminController).Replace("Controller", ""));
         }
 
     }

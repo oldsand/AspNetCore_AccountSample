@@ -26,7 +26,8 @@ namespace AccountSample
                 try
                 {
                     var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
-                    DbInitializer.Initialize(userManager);
+                    //TODO: Issue occurs, the seedData is not created!!!!!
+                    DbInitializer.Initialize(userManager).RunSynchronously(); 
                 }
                 catch (Exception ex)
                 {
